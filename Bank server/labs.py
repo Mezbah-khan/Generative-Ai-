@@ -1,132 +1,105 @@
-# hello wrold this is mezbah lhan from backend developer 
-# Lets create the model of data visualizations with pylabs (numpy, matplotlib, seaborn )
-# Lets do this with proper codes and modules 
+# hello wrold this is mezbah khan from backend developer 
+# lets create a project based on humaid and Artificial inteligence 
+# lets do this with proper codes
 
 import numpy as np 
+import pandas as pd 
 import matplotlib.pyplot as plt 
-import pandas as pd
-from faker import Faker
 import seaborn as sns 
 import sklearn as skn 
+import math , os , time 
 
+class FristCls:
+    welcome = 'Welcome everyone in this project!'
+    
+    def __init__(self, card, lock):
+        self.card = card
+        self.lock = lock
 
-    # Lets create the frsit functions --> 
-class fristcls:
-    hello01 = 'Welcome to this project!'
-    
-    def __init__(self, name, age, salary):
-        self.name = name
-        self.age = age
-        self.salary = salary
-    
     @staticmethod
     def warn():
-        print('The system encountered an error!')
-        
-    # Lets create the secend fucntions 
-    def frist_functions(self):
-        if isinstance(self.name, str) and isinstance(self.age, int) and isinstance(self.salary, int): 
-            store_name = self.name
-            store_age = self.age 
-            store_salary = self.salary
-            with open('demo.txt', 'a') as file:  # Use 'a' for append mode
-                file.write(f'This is user name: {self.name}\nThis is user age: {self.age}\nThis is user salary: {self.salary}\n')
-            return store_age, store_name, store_salary
-        else: 
-            return self.warn()
-        
-    def frist_dataset(self):
-        try: 
-            Hmn_dataset = {
-                'name': [str(i) for i in self.name.split(',')],
-                'age': [int(x) for x in self.age.split(',')],
-                'salary': [int(s) for s in self.salary.split(',')]
-            }
-            return Hmn_dataset
-        except ValueError:
-            print('The system encountered an error!')
+        return 'The system is error!'
 
-   # Lets crete the secend class with inherite fristcls 
-   
-class secendcls(fristcls):
-    hello02 = 'This project is created by mezbah khan!'
-    
-    def __init__(self, name, age, salary, start, stop):
-        super().__init__(name, age, salary)
-        self.start = start
-        self.stop = stop 
-        
-    @staticmethod
-    def alert(): 
-        return 'The system can only store int64 and str128 values!'
-    
-    def secend_functions(self): 
-        if isinstance(self.start, int) and isinstance(self.stop, int) and isinstance(self.salary, int): 
-            starting_index = self.start
-            stopping_index = self.stop
-            store_salary = self.salary
-            return starting_index, stopping_index, store_salary
+    def frist_dataset(self):
+        try:
+            humaind_dataset = {
+                'account_non': self.card,
+                'account_password': self.lock
+            }
+            return humaind_dataset
+        except TypeError:
+            print('The system is locked, try again...')
+
+    def frist_functions(self):
+        if isinstance(self.card, int) and isinstance(self.lock, int):
+            data = self.frist_dataset()
+            with open('demo.txt', 'w') as file:
+                file.write(f"This is user account: {data['account_non']}\nThis is user password: {data['account_password']}")
         else:
-            return self.alert()
-        
-    def secend_dataset(self): 
-        try: 
-            fake = Faker()
+            return self.warn()
+
+
+class SecendCls(FristCls):
+    hello = 'The project is created by Mezbah Khan $'
+    
+    def __init__(self, card, lock, Ai_card, Ai_lock):
+        super().__init__(card, lock)
+        self.Ai_card = Ai_card
+        self.Ai_lock = Ai_lock
+
+    @staticmethod
+    def alert():
+        print('The system is for only financial transactions!')
+        print('Crypto, wallet, trading is not allowed!')
+
+    def secend_dataset(self):
+        try:
             Ai_dataset = {
-                'ages': np.random.randint(1, 100, 10),
-                'salaries': np.random.randint(10000, 50000, 10),
-                'name': [fake.name() for _ in range(10)]
+                'Ai_card': np.arange(500, 23500, 100).sum(),
+                'Ai_password': np.random.randint(2000, 4000, 100).sum()
             }
             return Ai_dataset
-        except TypeError: 
-            print('This is a system error!')
+        except ValueError:
+            print('System is error, try again...')
 
-class thirdcls(secendcls): 
-    hello3 = 'This project can also store data in txt format'
+    def secend_functions(self):
+        if isinstance(self.Ai_card, int) and isinstance(self.Ai_lock, int):
+            data = self.secend_dataset()
+            with open('demo.txt', 'a') as file:
+                file.write(f"\nThis is AI account: {data['Ai_card']}\nThis is AI password: {data['Ai_password']}")
+        else:
+            return self.warn()
+
+
+class ThirdCls(SecendCls):
+    intro = 'The system can handle local financial servers!'
     
-    def __init__(self, name, age, salary, start, stop):
-        super().__init__(name, age, salary, start, stop)
-    
+    def __init__(self, card, lock, Ai_card, Ai_lock):
+        super().__init__(card, lock, Ai_card, Ai_lock)
+
     @classmethod
-    def get_choice_select(cls): 
-        print('1. Enter your data and visualize (Humanid)')
-        print('2. Generate Random data and visualize (Ai)')
+    def get_user_choice(cls):
+        print('1. Create your account (Human)')
+        print('2. Create your account (AI based)')
         choice = int(input('Enter your choice: '))
         
-        if choice == 1:
-            name_input = input('Enter user names: ')
-            age_input = input('Enter user ages : ')
-            salary_input = input('Enter user salaries: ')
-            
-            data = cls(name_input, age_input, salary_input, 0, 0).frist_dataset()
-            df = pd.DataFrame(data)
-            print(df)
-            sns.barplot(x='age', y='salary', data=df, palette='muted')
-            plt.grid(True)
-            plt.xlabel('User Ages')
-            plt.ylabel('User Salaries')
-            plt.title('Age bs sa')
-            plt.show()
-            
-        elif choice == 2: 
-            chart = cls('', '', '', 0, 0).secend_dataset()
-            cf = pd.DataFrame(chart)
-            print(cf)
-            sns.barplot(x='ages', y='salaries', data=cf, palette='muted')
-            plt.grid(True)
-            plt.xlabel('User Ages')
-            plt.ylabel('User Salaries')
-            plt.title('Age  vs salries distributions')
-            plt.show()
-    
-        else: 
-            cls().warn()
+        try:
+            if choice == 1:
+                user_input_01 = int(input('Enter your account num: '))
+                user_input_02 = int(input('Enter your password: '))
+                human_instance = cls(user_input_01, user_input_02, None, None)
+                human_instance.frist_functions()
+                
+            elif choice == 2:
+                ai_input_01 = int(input('Enter your AI account num: '))
+                ai_input_02 = int(input('Enter your AI password: '))
+                ai_instance = cls(None, None, ai_input_01, ai_input_02)
+                ai_instance.secend_functions()
+                
+            else:
+                print('Invalid choice')
+        except ValueError:
+            print('Invalid input')
 
-class fourthcls(thirdcls): 
-    hello03 = 'This project can handle multiple data and visualize data!'
-    
-    def __init__(self, name, age, salary, start, stop):
-        super().__init__(name, age, salary, start, stop)
-
-if __name__ =='__main__': 
-    fourthcls.get_choice_select()
+if __name__ == "__main__":
+    ThirdCls.get_user_choice()
