@@ -40,8 +40,7 @@ class fristcls:
             Hmn_dataset = {
                 'name': [str(i) for i in self.name.split(',')],
                 'age': [int(x) for x in self.age.split(',')],
-                'salary': [int(s) for s in self.salary.split(',')]
-            }
+                'salary': [int(s) for s in self.salary.split(',')] }
             return Hmn_dataset
         except ValueError:
             print('The system encountered an error!')
@@ -118,7 +117,6 @@ class thirdcls(secendcls):
             plt.ylabel('User Salaries')
             plt.title('Age  vs salries distributions')
             plt.show()
-    
         else: 
             cls().warn()
 
